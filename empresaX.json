@@ -9007,4 +9007,13 @@
     "ip_address": "192.168.0.9",
     "country": "Brazil",
     "department": "TI"
+}, {
+    "id": 1002,
+    "first_name": "Artur",
+    "last_name": "Duarte",
+    "email": "arturduarte@gmail.com",
+    "gender": "Male",
+    "ip_address": "200.153.69.210",
+    "country": "Brazil",
+    "department": "TI"
 }]
