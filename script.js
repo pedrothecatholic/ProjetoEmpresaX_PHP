@@ -15,3 +15,11 @@ function openNewModal() {
 function closeNewModal() {
     modal.style.display = 'none';
 }
+
+function deletar(){
+    let confirmacao = confirm("Deseja deletar o funcionário?");
+
+    if (confirmacao){
+        window.location = "acaoDeletar.php?id=" == idFuncionario;
+    }
+}

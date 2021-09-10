@@ -13,21 +13,38 @@ function buscarFuncionario($funcionarios, $nome)
 {
 
     $funcionariosFiltro = [];
-    
     foreach ($funcionarios as $funcionario) {
-        if (strpos($funcionario->first_name, $nome) !== false) {
+        if (
+            strpos($funcionario->first_name, $nome) !== false
+        ) {
             $funcionariosFiltro[] = $funcionario;
         }
     }
     return $funcionariosFiltro;
 }
 
-function adicionarFuncionario($nomeArquivo, $novoFuncionario)
+function adicionarFuncionario(array $funcionario)
 {
-    $funcionarios = lerArquivo($nomeArquivo);
+    $funcionarios = lerArquivo('./empresaX.json');
     $id = count($funcionarios) + 1;
     $funcionario['id'] = $id;
     $funcionarios[] = $funcionario;
-    $json = json_encode($funcionarios);
-    file_put_contents($nomeArquivo, $json);
+    $jsonArray = json_encode($funcionarios);
+    file_put_contents('empresaX.json', $jsonArray);
+}
+
+function deletarFuncionario($nomeArquivo, $idFuncionario){
+    
+    $funcionarios = lerArquivo($nomeArquivo);
+
+    foreach($funcionarios as $chave => $funcionario){
+       if($funcionario->id == $idFuncionario){
+           unset($funcionarios[$chave]);
+       } 
+    }
+
+    $jsonArray = json_encode(array_values($funcionarios));
+
+    file_put_contents($nomeArquivo, $jsonArray);
+
 }

@@ -5,8 +5,8 @@
 }
 
 body {
-    background-color: #030303;
-    color: #ffffff;
+    background-color: #FEFEFE;
+    color: #141414;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -19,6 +19,10 @@ h1 {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 40px;
+}
+
+h2 {
+    color: black;
 }
 
 #subtitle {
@@ -34,12 +38,12 @@ table {
 }
 
 table th {
-    background-color: #377fa0da;
+    background-color: teal;
 }
 
 table tr:hover {
     cursor: pointer;
-    background-color:#377fa0;
+    background-color: teal;
 }
 
 table td,
@@ -57,19 +61,32 @@ form {
 
 input {
     width: 90%;
-    margin-bottom: 20px;
     padding: 10px;
     border-radius: 5px;
     outline: none;
 }
 
+#buscarFuncionario {
+    margin-bottom: 20px;
+    border: none;
+}
+
 button {
-    width: 9.6%;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     outline: none;
+    border: none;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #600000;
 }
 
 #add_new {
@@ -150,7 +167,6 @@ button {
 
 #container_modal .modal form select {
     color: #868686;
-    margin-bottom: 20px;
 }
 
 #container_modal .modal form input:focus,
@@ -177,9 +193,9 @@ button {
 }
 
 #cancel {
-    background-color: red;
+    background-color: green;
 }
 
 #send {
-    background-color: green;
+    background-color: red;
 }

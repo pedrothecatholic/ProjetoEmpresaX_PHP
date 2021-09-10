@@ -10,6 +10,25 @@ if (isset($_GET["buscarFuncionario"])) {
     $funcionarios = buscarFuncionario($funcionarios, $_GET["buscarFuncionario"]);
 }
 
+if (
+    !empty($_GET["first_name"]) && !empty($_GET["last_name"]) &&
+    !empty($_GET["email"]) && !empty($_GET["gender"]) &&
+    !empty($_GET["ip_address"]) && !empty($_GET["country"])
+    && !empty($_GET["department"])
+) {
+    adicionarFuncionario([
+        "first_name" => $_GET["first_name"],
+        "last_name" => $_GET["last_name"],
+        "email" => $_GET["email"],
+        "gender" => $_GET["gender"],
+        "ip_address" => $_GET["ip_address"],
+        "country" => $_GET["country"],
+        "department" => $_GET["department"],
+    ]);
+
+    header("location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +39,7 @@ if (isset($_GET["buscarFuncionario"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="./script.js" defer></script>
     <title>Empresa X</title>
 </head>
@@ -42,6 +62,7 @@ if (isset($_GET["buscarFuncionario"])) {
                 <th>Endereço IP</th>
                 <th>País</th>
                 <th>Departamento</th>
+                <th>Ações</th>
             </tr>
             <?php foreach ($funcionarios as $funcionario) : ?>
                 <tr>
@@ -53,6 +74,10 @@ if (isset($_GET["buscarFuncionario"])) {
                     <td><?= $funcionario->ip_address ?></td>
                     <td><?= $funcionario->country ?></td>
                     <td><?= $funcionario->department ?></td>
+                    <td>
+                        <button class="material-icons">edit</button>
+                        <button onclick="deletar(<?= $funcionario->id ?>)" class="material-icons">delete</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
@@ -64,9 +89,8 @@ if (isset($_GET["buscarFuncionario"])) {
     <div id="container_modal">
         <div id="bg"></div>
         <div class="modal">
-             <form id="form-funcionario" action="" method="POST">
-                <h2>Novo Funcionário</h2>
-                <input type="text" name="id" required placeholder="ID">
+            <h2>Adicione um novo funcionário</h2>
+            <form>
                 <input type="text" name="first_name" required placeholder="Nome">
                 <input type="text" name="last_name" required placeholder="Sobrenome">
                 <input type="text" name="email" required placeholder="E-mail">
