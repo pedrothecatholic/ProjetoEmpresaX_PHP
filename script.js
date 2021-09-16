@@ -14,10 +14,6 @@ addNewEmployee.addEventListener("click", openAddModal)
 cancelAddEmployee.addEventListener("click", closeAddModal)
 add_modalBackground.addEventListener("click", closeAddModal)
 
-// deleteEmployee.addEventListener("click", openDeleteModal)
-// cancelDeleteEmployee.addEventListener("click", closeDeleteModal)
-// delete_modalBackground.addEventListener("click", closeDeleteModal)
-
 function openAddModal() {
     add_modal.style.display = "flex"
 }
@@ -26,18 +22,18 @@ function closeAddModal() {
     add_modal.style.display = "none"
 }
 
-// function openDeleteModal() {
-//     delete_modal.style.display = "flex"
-// }
-
-// function closeDeleteModal() {
-//     delete_modal.style.display = "none"
-// }
-
 function deletar(idFuncionario) {
     let confirmacao = confirm("Deseja deletar o funcionário?")
 
     if (confirmacao) {
         window.location = "acaoDeletar.php?id=" + idFuncionario
     }
+}
+
+function editar(idFuncionario){
+    
+    //Teste de recebimento:
+    //alert(idFuncionario);
+    window.location = "editar.php?id=" + idFuncionario
+
 }
