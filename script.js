@@ -1,25 +1,43 @@
-const newButton = document.getElementById('add_new');
-const cancelButton = document.getElementById('cancel');
-const sendButton = document.getElementById('send');
-const modal = document.getElementById('container_modal');
-const modalBackground = document.getElementById('bg');
+const addNewEmployee = document.getElementById("add_new")
+const cancelAddEmployee = document.getElementById("cancel")
+const sendButton = document.getElementById("send")
 
-newButton.addEventListener('click', openNewModal);
-cancelButton.addEventListener('click', closeNewModal);
-modalBackground.addEventListener('click', closeNewModal);
+const add_modal = document.getElementById("add_container_modal")
+const add_modalBackground = document.getElementById("add_bg")
 
-function openNewModal() {
-    modal.style.display = 'flex';
+const delete_modal = document.getElementById("delete_container_modal")
+const delete_modalBackground = document.getElementById("delete_bg")
+const deleteEmployee = document.getElementById("delete")
+const cancelDeleteEmployee = document.getElementById("cancelDelete")
+
+addNewEmployee.addEventListener("click", openAddModal)
+cancelAddEmployee.addEventListener("click", closeAddModal)
+add_modalBackground.addEventListener("click", closeAddModal)
+
+// deleteEmployee.addEventListener("click", openDeleteModal)
+// cancelDeleteEmployee.addEventListener("click", closeDeleteModal)
+// delete_modalBackground.addEventListener("click", closeDeleteModal)
+
+function openAddModal() {
+    add_modal.style.display = "flex"
 }
 
-function closeNewModal() {
-    modal.style.display = 'none';
+function closeAddModal() {
+    add_modal.style.display = "none"
 }
 
-function deletar(){
-    let confirmacao = confirm("Deseja deletar o funcionário?");
+// function openDeleteModal() {
+//     delete_modal.style.display = "flex"
+// }
 
-    if (confirmacao){
-        window.location = "acaoDeletar.php?id=" == idFuncionario;
+// function closeDeleteModal() {
+//     delete_modal.style.display = "none"
+// }
+
+function deletar(idFuncionario) {
+    let confirmacao = confirm("Deseja deletar o funcionário?")
+
+    if (confirmacao) {
+        window.location = "acaoDeletar.php?id=" + idFuncionario
     }
 }

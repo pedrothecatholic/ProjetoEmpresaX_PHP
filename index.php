@@ -38,8 +38,8 @@ if (
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a757f2d5f7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="./script.js" defer></script>
     <title>Empresa X</title>
 </head>
@@ -49,8 +49,8 @@ if (
     <p id="subtitle">A empresa conta com <?= $count ?> funcionários</p>
     <section>
         <form>
-            <input type="text" placeholder="Buscar funcionário..." name="buscarFuncionario" id="buscarFuncionario" value='<?= isset($_GET["buscarFuncionario"]) ? $_GET["buscarFuncionario"] : "" ?>' />
-            <button>Buscar</button>
+            <input type="text" required placeholder="Buscar funcionário..." name="buscarFuncionario" id="buscarFuncionario" value='<?= isset($_GET["buscarFuncionario"]) ? $_GET["buscarFuncionario"] : "" ?>' />
+            <button id="buscar">Buscar</button>
         </form>
         <table border="1">
             <tr>
@@ -62,7 +62,7 @@ if (
                 <th>Endereço IP</th>
                 <th>País</th>
                 <th>Departamento</th>
-                <th>Ações</th>
+                <th>Ação</th>
             </tr>
             <?php foreach ($funcionarios as $funcionario) : ?>
                 <tr>
@@ -75,8 +75,9 @@ if (
                     <td><?= $funcionario->country ?></td>
                     <td><?= $funcionario->department ?></td>
                     <td>
-                        <button class="material-icons">edit</button>
-                        <button onclick="deletar(<?= $funcionario->id ?>)" class="material-icons">delete</button>
+                        <button id="edit"><i class="fas fa-edit"></i></button>
+                        <button id="delete" onclick="deletar(<?= $funcionario->id ?>)"><i class="fas fa-trash-alt"></i></button>
+                        <!-- <button id="delete" onclick="openDeleteModal()">Deletar</button> -->
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -86,8 +87,9 @@ if (
     <div id="add_new">
         <p>+</p>
     </div>
-    <div id="container_modal">
-        <div id="bg"></div>
+
+    <div id="add_container_modal">
+        <div id="add_bg"></div>
         <div class="modal">
             <h2>Adicione um novo funcionário</h2>
             <form>
@@ -105,6 +107,19 @@ if (
                 <div class="buttons">
                     <button id="cancel" type="button">Cancelar</button>
                     <button id="send">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="delete_container_modal">
+        <div id="delete_bg"></div>
+        <div class="modal">
+            <h2>Você deseja mesmo fazer isso?</h2>
+            <form>
+                <div class="buttons">
+                    <button id="cancelDelete" type="button">Cancelar</button>
+                    <button id="confirmDelete">Deletar</button>
                 </div>
             </form>
         </div>

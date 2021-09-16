@@ -15,7 +15,9 @@ function buscarFuncionario($funcionarios, $nome)
     $funcionariosFiltro = [];
     foreach ($funcionarios as $funcionario) {
         if (
-            strpos($funcionario->first_name, $nome) !== false
+            strpos($funcionario->first_name, $nome) !== false ||
+            strpos($funcionario->last_name, $nome) !== false ||
+            strpos($funcionario->department, $nome) !== false
         ) {
             $funcionariosFiltro[] = $funcionario;
         }
@@ -25,26 +27,26 @@ function buscarFuncionario($funcionarios, $nome)
 
 function adicionarFuncionario(array $funcionario)
 {
-    $funcionarios = lerArquivo('./empresaX.json');
+    $funcionarios = lerArquivo('empresaX.json');
     $id = count($funcionarios) + 1;
     $funcionario['id'] = $id;
     $funcionarios[] = $funcionario;
-    $jsonArray = json_encode($funcionarios);
-    file_put_contents('empresaX.json', $jsonArray);
+    $json = json_encode($funcionarios);
+    file_put_contents('empresaX.json', $json);
 }
 
-function deletarFuncionario($nomeArquivo, $idFuncionario){
-    
+function deletarFuncionario($nomeArquivo, $idFuncionario)
+{
+
     $funcionarios = lerArquivo($nomeArquivo);
 
-    foreach($funcionarios as $chave => $funcionario){
-       if($funcionario->id == $idFuncionario){
-           unset($funcionarios[$chave]);
-       } 
+    foreach ($funcionarios as $chave => $funcionario) {
+        if ($funcionario->id == $idFuncionario) {
+            unset($funcionarios[$chave]);
+        }
     }
 
     $jsonArray = json_encode(array_values($funcionarios));
 
     file_put_contents($nomeArquivo, $jsonArray);
-
 }
